@@ -1,6 +1,19 @@
 #include<iostream>
 using namespace std;
 
+//To implement a graph we need a vertex class with will describe the attribute for each vertex
+class Vertex
+{
+    
+}
+
+//We also need edge class which will define the behaviour of the edges
+class Edge
+{
+    
+}
+
+
 class Graph
 {
     public:
