@@ -1,4 +1,5 @@
 #include<iostream>
+
 using namespace std;
 
 class Graph;
@@ -26,10 +27,10 @@ class Vertex
         
         bool operator!=(const Vertex& v) const
         {
-            return (graph!=g.graph)&&(vID!=v.vID);
+            return (graph!=v.graph)&&(vID!=v.vID);
         }
         
-}
+};
 
 //We also need edge class which will define the behaviour of the edges
 class Edge
@@ -41,9 +42,31 @@ class Edge
         unsigned sourceNode;
         unsigned destNode;
         Edge(const Graph* g, unsigned id, unsigned wt, unsigned source, unsigned dest): graph(g), eID(id), eWT(wt), sourceNode(source), destNode(dest){}
-    public:
-        Edge(): graph(0), eID(0), eWT(0), sourceNode(0), destNode(0){}
-}
+    	
+		friend class Graph;
+	public:
+        Edge(){}
+		const Vertex source() const
+		{
+			return Vertex(graph, sourceNode);
+		}
+		const Vertex dest() const
+		{
+			return Vertex(graph, destNode);
+		}
+		unsigned id() const
+		{
+			return eID;
+		}	
+		bool operator== (const Edge& e)const
+		{
+			return (graph == e.graph) && (eID == e.eID);
+		}
+		unsigned weight() const
+		{
+			return eWT;
+		}
+};
 
 
 class Graph
@@ -102,6 +125,7 @@ class Graph
         
 };
 
+/*
 class PriorityQueue
 {
   public:
@@ -156,3 +180,11 @@ class ShortestPathAlgo
         
     }
 };
+*/
+
+int main()
+{
+Edge* e = new Edge();
+Vertex* v = new Vertex();
+cout << v->id()<< endl;
+}
