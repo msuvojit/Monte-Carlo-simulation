@@ -1,16 +1,48 @@
 #include<iostream>
 using namespace std;
 
+class Graph;
 //To implement a graph we need a vertex class with will describe the attribute for each vertex
 class Vertex
 {
-    
+    private:
+        const Graph* graph;
+        unsigned vID;
+        Vertex(const Graph* g, unsigned ID):graph(g),vID(ID){}
+        friend class Graph;
+        friend class Edge;
+    public:
+        Vertex():graph(0),vID(0){}
+        
+        unsigned id() const
+        {
+            return vID;
+        }
+        
+        bool operator==(const Vertex& v) const
+        {
+            return (graph==v.graph)&&(vID==v.vID);
+        }
+        
+        bool operator!=(const Vertex& v) const
+        {
+            return (graph!=g.graph)&&(vID!=v.vID);
+        }
+        
 }
 
 //We also need edge class which will define the behaviour of the edges
 class Edge
 {
-    
+    private:
+        const Graph* graph;
+        unsigned eID;
+        unsigned eWT;
+        unsigned sourceNode;
+        unsigned destNode;
+        Edge(const Graph* g, unsigned id, unsigned wt, unsigned source, unsigned dest): graph(g), eID(id), eWT(wt), sourceNode(source), destNode(dest){}
+    public:
+        Edge(): graph(0), eID(0), eWT(0), sourceNode(0), destNode(0){}
 }
 
 
@@ -107,6 +139,7 @@ class PriorityQueue
 
 class ShortestPathAlgo
 {
+    public:
     //Returns list of vertices in G(V,E)
     void vertices(List)
     {
